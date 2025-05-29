@@ -9,11 +9,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: false
+          submodules: true
+          fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+      - name: Install hexo-cli
+        run: npm install hexo-cli
+
       - name: Install dependencies
         run: npm install
       - name: Generate static files
