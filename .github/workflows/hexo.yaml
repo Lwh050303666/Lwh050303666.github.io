@@ -7,22 +7,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          submodules: true
-          fetch-depth: 0
+          submodules: recursive
+          
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '16'
       - name: Install hexo-cli
-        run: npm install hexo-cli
+        run: npm install hexo-cli --no-bin-links
 
       - name: Install dependencies
         run: npm install
 
       - name: Debug ls themes folder
         run: ls -lR themes/
+      - name: Check hexo-cli installation
+        run: npm list -g --depth=0
         
       - name: Generate static files
         run: npx hexo clean && npx hexo generate
