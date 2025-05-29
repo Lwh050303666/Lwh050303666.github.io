@@ -20,6 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Debug ls themes folder
+        run: ls -lR themes/
+        
       - name: Generate static files
         run: npx hexo clean && npx hexo generate
       - name: Setup git config
