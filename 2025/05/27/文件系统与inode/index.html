@@ -26,22 +26,22 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="知识点大杂烩不只是cpu中才有寄存器，磁盘也有：  控制寄存器(控制IO方向); 数据寄存器; 状态寄存器;在linux中，文件的属性不包含文件的名称，那是因为有个概念叫“硬链接”；linux系统中，一个文件有一个inode，每一个inode都有自己的inode编号(inode的设置是以分区为单位的，不能跨分区);inode表示文件的所有属性;目录的inode中保存有它下面的文件的”文件名-ino">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-8.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-2.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-9.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-3.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-10.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-11.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-4.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-5.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-6.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-7.png">
-<meta property="og:image" content="https://lwh050303666.github.io/.io//image-12.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-8.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-2.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-9.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-3.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-10.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-11.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-4.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-5.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-6.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-7.png">
+<meta property="og:image" content="https://lwh050303666.github.io/image-12.png">
 <meta property="article:published_time" content="2025-05-27T15:11:03.000Z">
 <meta property="article:modified_time" content="2025-06-04T13:28:58.045Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lwh050303666.github.io/.io//image-8.png">
+<meta name="twitter:image" content="https://lwh050303666.github.io/image-8.png">
 
 
 <link rel="canonical" href="https://lwh050303666.github.io/2025/05/27/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8Einode/">
@@ -228,22 +228,22 @@
 <li>状态寄存器;<br>在linux中，文件的属性不包含文件的名称，那是因为有个概念叫“硬链接”；<br>linux系统中，一个文件有一个inode，每一个inode都有自己的inode编号(inode的设置是以分区为单位的，不能跨分区);<br>inode表示文件的所有属性;<br>目录的inode中保存有它下面的文件的”文件名-inode”映射关系;<br>缓存中有常用的文件路径;<br>需要注意的是，每一个分区在被使用之前，都必须提前先将部分文件系统的属性信息提前设置进对应的分区中，方便我们后续使用这个分区或分组(这个过程又被称为格式化);</li>
 </ol>
 <p>删除文件的时候，一般是修改文件对应的bitmap,而不会直接把真正的文件内容进行覆盖;</p>
-<p><img src="/.io//image-8.png"><br><img src="/.io//image-2.png"><br><img src="/.io//image-9.png"><br><img src="/.io//image-3.png"></p>
+<p><img src="/image-8.png"><br><img src="/image-2.png"><br><img src="/image-9.png"><br><img src="/image-3.png"></p>
 <h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>软链接是一个独立文件，具有自己的inode;<br>硬链接不是一个独立文件，没有自己的inode;</p>
 <dl><dt>指令<br>: ln [原文件] [硬连接名] 创建硬链接。</dt><dd>ln -s [原文件或目录] [软链接名]软链接。</dd></dl><p>链接的分类:</p>
 <ol>
-<li><img src="/.io//image-10.png"> 硬链接本质是在特定目录的数据块中新增的文件名和指向的文件的inode编号的映射关系;</li>
-<li><img src="/.io//image-11.png">软链接是一个独立的文件，有自己的inode，也有独立的数据块，它的数据块里保存的是指向的文件的路径</li>
+<li><img src="/image-10.png"> 硬链接本质是在特定目录的数据块中新增的文件名和指向的文件的inode编号的映射关系;</li>
+<li><img src="/image-11.png">软链接是一个独立的文件，有自己的inode，也有独立的数据块，它的数据块里保存的是指向的文件的路径</li>
 </ol>
 <p>所谓的建立硬链接，本质其实就是在特定目录的数据块中新增文件名和指向的文件的inode;</p>
 <p>linux中不允许对目录创建硬链接，因为如果能这样的话下次执行诸如find命令时就会出现死循环的现象，但是”.”和”..”文件是例外，是系统自己搞的</p>
-<p><img src="/.io//image-4.png"></p>
-<h3 id="值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪"><a href="#值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪" class="headerlink" title="值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪"></a>值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪</h3><p><img src="/.io//image-5.png"><br><img src="/.io//image-6.png"></p>
+<p><img src="/image-4.png"></p>
+<h3 id="值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪"><a href="#值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪" class="headerlink" title="值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪"></a>值得注意的是，在上面这张图片中的硬连接数在某些情况下乍一想可能很奇怪</h3><p><img src="/image-5.png"><br><img src="/image-6.png"></p>
 <ol>
 <li>例如当我查看某个没有子目录的目录的硬链接数量时，通常会显示数量是2，因为”test.r”和”.”文件都会指向这个目录的inode;</li>
-<li><img src="/.io//image-7.png"><br>为什么硬链接数这么多？那是因为除了”lwh”和它下面的”.”之外，该目录下面的每一个文件中还会有一个”..”文件，此文件会指向上级目录，即”lwh”。</li>
+<li><img src="/image-7.png"><br>为什么硬链接数这么多？那是因为除了”lwh”和它下面的”.”之外，该目录下面的每一个文件中还会有一个”..”文件，此文件会指向上级目录，即”lwh”。</li>
 </ol>
-<p><img src="/.io//image-12.png"></p>
+<p><img src="/image-12.png"></p>
 
     </div>
 
