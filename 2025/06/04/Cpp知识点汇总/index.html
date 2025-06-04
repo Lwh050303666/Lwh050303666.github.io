@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lwh050303666.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="我这几天发现了一个宝藏公众号具体叫什么我忘记了，不过它们开发出了一款叫做”渐构”的小程序，这个网站上面有很多困扰公众已久的问题，我觉得价值非常大，有空可以多看看   异常的重新抛出 派生类对象的构造和析构过程 虚函数表和虚基表 四种类型转换运算符 右值引用，左值引用和完美转发 lamada表达式 多态的实现原理 为什么可以实现多态呢？关键在于基类的对象或引用在传递时会出现切割的现象，切割以后父类的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cpp知识点汇总">
+<meta property="og:url" content="https://lwh050303666.github.io/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我这几天发现了一个宝藏公众号具体叫什么我忘记了，不过它们开发出了一款叫做”渐构”的小程序，这个网站上面有很多困扰公众已久的问题，我觉得价值非常大，有空可以多看看   异常的重新抛出 派生类对象的构造和析构过程 虚函数表和虚基表 四种类型转换运算符 右值引用，左值引用和完美转发 lamada表达式 多态的实现原理 为什么可以实现多态呢？关键在于基类的对象或引用在传递时会出现切割的现象，切割以后父类的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//d6be1791ed864430fee7dff83aa13f1.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//1811e9288afeb835141efb92b05c623.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//fad3942eb54f02d95136caa22b90e22.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//3995084d4d007366faa74d2cb45b95a.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//26e34c21596a4f9e2974a259224508f.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//06d72c88010058269b3127347bc38c9.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//252eb44c9ea70bf9d288a346cff7d7.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//6ec6f4722adeeb84eb83e50050eb059.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//6bfbf439d29ec8b406d6faa9bedea11.png">
+<meta property="og:image" content="https://lwh050303666.github.io/.io//b79dae7681a03b0e87d621f936d5dba.png">
+<meta property="article:published_time" content="2025-06-03T16:09:33.000Z">
+<meta property="article:modified_time" content="2025-06-04T10:25:41.661Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lwh050303666.github.io/.io//d6be1791ed864430fee7dff83aa13f1.png">
+
+
+<link rel="canonical" href="https://lwh050303666.github.io/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lwh050303666.github.io/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/","path":"2025/06/04/Cpp知识点汇总/","title":"Cpp知识点汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Cpp知识点汇总 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E8%BF%99%E5%87%A0%E5%A4%A9%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E5%AE%9D%E8%97%8F%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">我这几天发现了一个宝藏公众号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E9%87%8D%E6%96%B0%E6%8A%9B%E5%87%BA"><span class="nav-number">1.0.1.</span> <span class="nav-text">异常的重新抛出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%BE%E7%94%9F%E7%B1%BB%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">派生类对象的构造和析构过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E5%92%8C%E8%99%9A%E5%9F%BA%E8%A1%A8"><span class="nav-number">1.0.3.</span> <span class="nav-text">虚函数表和虚基表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.0.4.</span> <span class="nav-text">四种类型转换运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%EF%BC%8C%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91"><span class="nav-number">1.0.5.</span> <span class="nav-text">右值引用，左值引用和完美转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lamada%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.0.6.</span> <span class="nav-text">lamada表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">多态的实现原理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lwh050303666.github.io/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Cpp知识点汇总 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cpp知识点汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-06-04 00:09:33 / Modified: 18:25:41" itemprop="dateCreated datePublished" datetime="2025-06-04T00:09:33+08:00">2025-06-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="我这几天发现了一个宝藏公众号"><a href="#我这几天发现了一个宝藏公众号" class="headerlink" title="我这几天发现了一个宝藏公众号"></a>我这几天发现了一个宝藏公众号</h1><p><img src="/.io//d6be1791ed864430fee7dff83aa13f1.png" alt=" "><br>具体叫什么我忘记了，不过它们开发出了一款叫做”渐构”的小程序，这个网站上面有很多困扰公众已久的问题，我觉得价值非常大，有空可以多看看</p>
+<p><img src="/.io//1811e9288afeb835141efb92b05c623.png" alt=" "></p>
+<p><img src="/.io//fad3942eb54f02d95136caa22b90e22.png" alt=" "></p>
+<h3 id="异常的重新抛出"><a href="#异常的重新抛出" class="headerlink" title="异常的重新抛出"></a>异常的重新抛出</h3><p><img src="/.io//3995084d4d007366faa74d2cb45b95a.png" alt=" "></p>
+<h3 id="派生类对象的构造和析构过程"><a href="#派生类对象的构造和析构过程" class="headerlink" title="派生类对象的构造和析构过程"></a>派生类对象的构造和析构过程</h3><p><img src="/.io//26e34c21596a4f9e2974a259224508f.png" alt=" "></p>
+<h3 id="虚函数表和虚基表"><a href="#虚函数表和虚基表" class="headerlink" title="虚函数表和虚基表"></a>虚函数表和虚基表</h3><p><img src="/.io//06d72c88010058269b3127347bc38c9.png" alt=" "></p>
+<h3 id="四种类型转换运算符"><a href="#四种类型转换运算符" class="headerlink" title="四种类型转换运算符"></a>四种类型转换运算符</h3><p><img src="/.io//252eb44c9ea70bf9d288a346cff7d7.png" alt=" "></p>
+<h3 id="右值引用，左值引用和完美转发"><a href="#右值引用，左值引用和完美转发" class="headerlink" title="右值引用，左值引用和完美转发"></a>右值引用，左值引用和完美转发</h3><p><img src="/.io//6ec6f4722adeeb84eb83e50050eb059.png" alt=" "></p>
+<h3 id="lamada表达式"><a href="#lamada表达式" class="headerlink" title="lamada表达式"></a>lamada表达式</h3><p><img src="/.io//6bfbf439d29ec8b406d6faa9bedea11.png" alt=" "></p>
+<h1 id="多态的实现原理"><a href="#多态的实现原理" class="headerlink" title="多态的实现原理"></a>多态的实现原理</h1><p><img src="/.io//b79dae7681a03b0e87d621f936d5dba.png" alt=" "></p>
+<p>为什么可以实现多态呢？关键在于<strong>基类的对象或引用在传递时会出现切割的现象，切割以后父类的指针或者引用所指向的是子类的虚函数表，而父类对象或引用传过去不会出现切割现象，指向的仍然是自己的虚函数表，因此才会出现指向谁调用谁的情况。最关键的点在于”切割”。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/03/%E6%9C%80%E8%BF%91%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%92%8C%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" rel="prev" title="最近的学习和生活感悟">
+                  <i class="fa fa-angle-left"></i> 最近的学习和生活感悟
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/06/04/test/" rel="next" title="test">
+                  test <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
