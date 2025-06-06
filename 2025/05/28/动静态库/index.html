@@ -21,43 +21,43 @@
 
     <meta name="description" content="知识点大杂烩 ctrl+~ 可以打开vscode的终端 所谓的”虚拟地址”和”逻辑地址”本质上是一回事，只不过在磁盘中被称为”逻辑地址”,到了内存中就成了”虚拟地址”.     上图为不同进程对同一动态库的链接方式      局部性原理：在计算机科学中，程序在执行时，倾向于重复访问最近使用过的数据或指令，以及与当前访问位置相邻的数据和指令。这种重复性访问模式使得程序在运行过程中，可以被预测和优化，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动静态库与进程地址空间">
+<meta property="og:title" content="动静态库">
 <meta property="og:url" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="知识点大杂烩 ctrl+~ 可以打开vscode的终端 所谓的”虚拟地址”和”逻辑地址”本质上是一回事，只不过在磁盘中被称为”逻辑地址”,到了内存中就成了”虚拟地址”.     上图为不同进程对同一动态库的链接方式      局部性原理：在计算机科学中，程序在执行时，倾向于重复访问最近使用过的数据或指令，以及与当前访问位置相邻的数据和指令。这种重复性访问模式使得程序在运行过程中，可以被预测和优化，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lwh050303666.github.io/71b33231049b92bae9481d863304955.png">
-<meta property="og:image" content="https://lwh050303666.github.io/7d3bdcb2cac9be71f915da553b52798.png">
-<meta property="og:image" content="https://lwh050303666.github.io/89bc03a8e30d0f2d0d1650152f37ba2.png">
-<meta property="og:image" content="https://lwh050303666.github.io/3dd578797f4951627e975529cce933d.png">
-<meta property="og:image" content="https://lwh050303666.github.io/cf116e7a0de32e1776d815187a9229b.png">
-<meta property="og:image" content="https://lwh050303666.github.io/1b1c953f82b4406d50ed801294b19d5.png">
-<meta property="og:image" content="https://lwh050303666.github.io/b1b7bdba90f46092a45c7a8b22e6532.jpg">
-<meta property="og:image" content="https://lwh050303666.github.io/bf13e8beb6fc79d3a8ffa73467d5191.jpg">
-<meta property="og:image" content="https://lwh050303666.github.io/11d0210ed132f3ad232a1ca8ca9b583.png">
-<meta property="og:image" content="https://lwh050303666.github.io/d2771e23af21e6dc98a4260d4682759.png">
-<meta property="og:image" content="https://lwh050303666.github.io/770df19989715694d553eb34f064886.png">
-<meta property="og:image" content="https://lwh050303666.github.io/c2b55acc7e1e2cf7cc96828715c6fec.png">
-<meta property="og:image" content="https://lwh050303666.github.io/ab6780bd87f2d9a7cc861118a662729.png">
-<meta property="og:image" content="https://lwh050303666.github.io/57ddcb3b09f1b61c7a3a7516fff096e.png">
-<meta property="og:image" content="https://lwh050303666.github.io/fe618d168702f0d30a0d0d359742ed1.png">
-<meta property="og:image" content="https://lwh050303666.github.io/4802a948569ef6fe75bf56bddaace51.png">
-<meta property="og:image" content="https://lwh050303666.github.io/673170b9df703c211db0d88461042f8.png">
-<meta property="og:image" content="https://lwh050303666.github.io/a4d009747f5e24e2fb2c03be70e549c.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/71b33231049b92bae9481d863304955.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/7d3bdcb2cac9be71f915da553b52798.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/89bc03a8e30d0f2d0d1650152f37ba2.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/3dd578797f4951627e975529cce933d.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/cf116e7a0de32e1776d815187a9229b.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/1b1c953f82b4406d50ed801294b19d5.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/b1b7bdba90f46092a45c7a8b22e6532.jpg">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/bf13e8beb6fc79d3a8ffa73467d5191.jpg">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/11d0210ed132f3ad232a1ca8ca9b583.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/d2771e23af21e6dc98a4260d4682759.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/770df19989715694d553eb34f064886.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/c2b55acc7e1e2cf7cc96828715c6fec.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/ab6780bd87f2d9a7cc861118a662729.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/57ddcb3b09f1b61c7a3a7516fff096e.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/fe618d168702f0d30a0d0d359742ed1.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/4802a948569ef6fe75bf56bddaace51.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/673170b9df703c211db0d88461042f8.png">
+<meta property="og:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/a4d009747f5e24e2fb2c03be70e549c.png">
 <meta property="article:published_time" content="2025-05-28T15:48:07.000Z">
-<meta property="article:modified_time" content="2025-06-04T13:28:11.223Z">
+<meta property="article:modified_time" content="2025-06-06T07:56:53.284Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lwh050303666.github.io/71b33231049b92bae9481d863304955.png">
+<meta name="twitter:image" content="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/71b33231049b92bae9481d863304955.png">
 
 
 <link rel="canonical" href="https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/","path":"2025/05/28/动静态库/","title":"动静态库与进程地址空间"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lwh050303666.github.io/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/","path":"2025/05/28/动静态库/","title":"动静态库"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>动静态库与进程地址空间 | Hexo</title>
+<title>动静态库 | Hexo</title>
   
 
 
@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -193,12 +193,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="动静态库与进程地址空间 | Hexo">
+      <meta itemprop="name" content="动静态库 | Hexo">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          动静态库与进程地址空间
+          动静态库
         </h1>
 
         <div class="post-meta-container">
@@ -216,7 +216,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-06-04 21:28:11" itemprop="dateModified" datetime="2025-06-04T21:28:11+08:00">2025-06-04</time>
+      <time title="Modified: 2025-06-06 15:56:53" itemprop="dateModified" datetime="2025-06-06T15:56:53+08:00">2025-06-06</time>
     </span>
 
   
@@ -232,32 +232,32 @@
 <li>ctrl+~ 可以打开vscode的终端</li>
 <li>所谓的”虚拟地址”和”逻辑地址”本质上是一回事，只不过在磁盘中被称为”逻辑地址”,到了内存中就成了”虚拟地址”.</li>
 </ul>
-<p><img src="/71b33231049b92bae9481d863304955.png"> </p>
-<p><img src="/7d3bdcb2cac9be71f915da553b52798.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/71b33231049b92bae9481d863304955.png"> </p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/7d3bdcb2cac9be71f915da553b52798.png"></p>
 <p>上图为不同进程对同一动态库的链接方式</p>
-<p><img src="/89bc03a8e30d0f2d0d1650152f37ba2.png"></p>
-<p><img src="/3dd578797f4951627e975529cce933d.png"></p>
-<p><img src="/cf116e7a0de32e1776d815187a9229b.png"></p>
-<p><img src="/1b1c953f82b4406d50ed801294b19d5.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/89bc03a8e30d0f2d0d1650152f37ba2.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/3dd578797f4951627e975529cce933d.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/cf116e7a0de32e1776d815187a9229b.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/1b1c953f82b4406d50ed801294b19d5.png"></p>
 <ol>
 <li>局部性原理：在计算机科学中，程序在执行时，倾向于重复访问最近使用过的数据或指令，以及与当前访问位置相邻的数据和指令。这种重复性访问模式使得程序在运行过程中，可以被预测和优化，从而提高系统的性能。</li>
 <li>linux中，我们的每一个进程，打开的每一个文件都要有自己的inode属性和自己的文件页缓冲区</li>
 <li>*.a表示静态库  *so表示动态库<br>linux中的编译器默认使用动态链接</li>
-<li>c语言中形参的实例化是从右向左执行的<br><img src="/b1b7bdba90f46092a45c7a8b22e6532.jpg"></li>
+<li>c语言中形参的实例化是从右向左执行的<br><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/b1b7bdba90f46092a45c7a8b22e6532.jpg"></li>
 </ol>
-<p>上图中的”myerrno”变量永远是初始值，因为printf函数中形参从右向左执行，先确定了myerrno的值才执行函数。<br><img src="/bf13e8beb6fc79d3a8ffa73467d5191.jpg"><br>上面这张图才是正确的做法</p>
-<h1 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h1><p><img src="/11d0210ed132f3ad232a1ca8ca9b583.png"></p>
-<p><img src="/d2771e23af21e6dc98a4260d4682759.png"></p>
+<p>上图中的”myerrno”变量永远是初始值，因为printf函数中形参从右向左执行，先确定了myerrno的值才执行函数。<br><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/bf13e8beb6fc79d3a8ffa73467d5191.jpg"><br>上面这张图才是正确的做法</p>
+<h1 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h1><p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/11d0210ed132f3ad232a1ca8ca9b583.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/d2771e23af21e6dc98a4260d4682759.png"></p>
 <p>如图是我写的几个程序，我们想要静态库的实现和链接功能。图中的”output”代表库的发布</p>
-<p><img src="/770df19989715694d553eb34f064886.png"><br><img src="/c2b55acc7e1e2cf7cc96828715c6fec.png"> </p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/770df19989715694d553eb34f064886.png"><br><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/c2b55acc7e1e2cf7cc96828715c6fec.png"> </p>
 <p>如图是我在另一个目录下创建的文件，可以看到文件出现了链接错误的情况。为什么呢？<br>本质原因在于编译器找不到头文件，有的人会问main中不是包含有头文件而且lib下不是有头文件吗，为什么找不到呢？那是因为linux中编译器只会默认在系统和当前目录下进行查找。（有的人会问，当前目录下不是有lib文件吗，里面不是有库的实现吗？非也非也，我们所说的 **”当前目录”**指的是和源代码同一个路径，这里的lib目录下的头文件和main显然不属于同一个目录。</p>
 <p>所以我们应该怎么做呢？</p>
 <ol>
-<li>方法一：把头文件直接写到系统目录中<br>2.<img src="/ab6780bd87f2d9a7cc861118a662729.png"><br>方法二：我们可以通过指令指定系统去搜索头文件路径，”-I”用来指定头文件的搜索路径，然而，对于库来说，系统默认只会搜索系统自带的c的库，-L”就是指定库路径，然而光指定库的路径还是不行，<strong>指定了库的路径以后万一这个路径下有很多的库怎么办？</strong>因此我们还得指定库的名称，”-l”就是指定库的名称，最好将”-l”和库的名称直接连起来，这样可以防止系统错将空格也识别为库名，需要注意的是，库的真实名字是去掉前缀和后缀的。</li>
+<li>方法一：把头文件直接写到系统目录中<br>2.<img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/ab6780bd87f2d9a7cc861118a662729.png"><br>方法二：我们可以通过指令指定系统去搜索头文件路径，”-I”用来指定头文件的搜索路径，然而，对于库来说，系统默认只会搜索系统自带的c的库，-L”就是指定库路径，然而光指定库的路径还是不行，<strong>指定了库的路径以后万一这个路径下有很多的库怎么办？</strong>因此我们还得指定库的名称，”-l”就是指定库的名称，最好将”-l”和库的名称直接连起来，这样可以防止系统错将空格也识别为库名，需要注意的是，库的真实名字是去掉前缀和后缀的。</li>
 </ol>
-<h1 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h1><p><img src="/57ddcb3b09f1b61c7a3a7516fff096e.png"></p>
+<h1 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h1><p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/57ddcb3b09f1b61c7a3a7516fff096e.png"></p>
 <p>如图是生成动态库的相关指令<br>gcc -fPIC -c(生成二进制文件) file(原文件)  (-o file)(可有可无)      不指明目标文件的话默认生成与file同名的”.o”文件</p>
-<p><img src="/fe618d168702f0d30a0d0d359742ed1.png"></p>
+<p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/fe618d168702f0d30a0d0d359742ed1.png"></p>
 <p>然而，如上图所示，动态链接有个小问题，你 gcc -I -L -l 在指定路径编译后程序在链接时会报错。原因:你上面指定路径是给编译器看的，在形成了可执行程序a.out准备运行时已经和编译器没有关系了，这和系统有关，因此得把路径移动到系统的默认路径下。 <strong>大体有以下几种方式</strong></p>
 <ol>
 <li>拷贝到系统默认的库路径&#x2F;usr&#x2F;lib64</li>
@@ -271,7 +271,7 @@
 <li>生成的静态库是不可执行的，因为静态库的功能就是给其他要链接的程序提供一份代码，但动态库是可执行的，因为动态库要和可执行程序产生关联，这就意味着动态库必定要被加载。</li>
 <li>进程地址空间：我们常常会有这样的疑惑：动态库在磁盘中使用的是硬编码，所以它只能访问硬编码所对应的地址，意味着是固定的，必须被加载到共享区的特定地址，那这显然不合适，进程那么多，为什么你能提前占位置呢？所以真正的静态库可以在虚拟内存共享区的任意位置占用空间，而让原库的内部函数不要采用绝对编制，只表示每个函数在库中的偏移量即可</li>
 </ul>
-<h1 id="每日算法题"><a href="#每日算法题" class="headerlink" title="每日算法题"></a>每日算法题</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><img src="/4802a948569ef6fe75bf56bddaace51.png"></p>
+<h1 id="每日算法题"><a href="#每日算法题" class="headerlink" title="每日算法题"></a>每日算法题</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/4802a948569ef6fe75bf56bddaace51.png"></p>
 <p>这段代码是用 <strong>滑动窗口算法</strong> 实现的 <strong>“最小覆盖子串”问题</strong> 的解法，即：</p>
 <blockquote>
 <p>给定字符串 <code>s</code> 和字符串 <code>t</code>，返回 <code>s</code> 中包含所有 <code>t</code> 中字符的最小子串（字符可以重复，顺序不限）。</p>
@@ -345,8 +345,8 @@
 </li>
 </ul>
 <hr>
-<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p><img src="/673170b9df703c211db0d88461042f8.png"></p>
-<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><p><img src="/a4d009747f5e24e2fb2c03be70e549c.png"><br>#include <iostream>     &#x2F;&#x2F; 用于 cin&#x2F;cout 输入输出<br>#include <vector>       &#x2F;&#x2F; 使用 vector 容器<br>using namespace std;</p>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/673170b9df703c211db0d88461042f8.png"></p>
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><p><img src="/2025/05/28/%E5%8A%A8%E9%9D%99%E6%80%81%E5%BA%93/a4d009747f5e24e2fb2c03be70e549c.png"><br>#include <iostream>     &#x2F;&#x2F; 用于 cin&#x2F;cout 输入输出<br>#include <vector>       &#x2F;&#x2F; 使用 vector 容器<br>using namespace std;</p>
 <p>int main() {<br>    int n, a, b;<br>    cin &gt;&gt; n;                   &#x2F;&#x2F; 输入数组长度 n<br>    vector<int> vec(n);         &#x2F;&#x2F; vec 数组，存储输入的原始数据<br>    vector<int> p(n);           &#x2F;&#x2F; p 数组，存储前缀和<br>    int presum &#x3D; 0;             &#x2F;&#x2F; 用于计算前缀和的累加变量</p>
 <pre><code>// 输入数组的每一个元素，并同时计算前缀和
 for (int i = 0; i &lt; n; i++) &#123;
