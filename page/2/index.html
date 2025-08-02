@@ -191,7 +191,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -271,7 +271,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -290,7 +290,7 @@
 <h3 id="异常的重新抛出"><a href="#异常的重新抛出" class="headerlink" title="异常的重新抛出"></a>异常的重新抛出</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/3995084d4d007366faa74d2cb45b95a.png"></p>
 <h3 id="派生类对象的构造和析构过程"><a href="#派生类对象的构造和析构过程" class="headerlink" title="派生类对象的构造和析构过程"></a>派生类对象的构造和析构过程</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/26e34c21596a4f9e2974a259224508f.png"></p>
 <h3 id="虚函数表和虚基表"><a href="#虚函数表和虚基表" class="headerlink" title="虚函数表和虚基表"></a>虚函数表和虚基表</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/06d72c88010058269b3127347bc38c9.png"></p>
-<h3 id="四种类型转换运算符"><a href="#四种类型转换运算符" class="headerlink" title="四种类型转换运算符"></a>四种类型转换运算符</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/252eba44c9ea70bf9d288a346cff7d7.png"></p>
+<h3 id="四种类型转换运算符"><a href="#四种类型转换运算符" class="headerlink" title="四种类型转换运算符"></a>四种类型转换运算符</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/252eba44c9ea70bf9d288a346cff7d7.png"><br><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/fd3a4d7e2869d64f23bdaa633f7ea49.png"></p>
 <h3 id="右值引用，左值引用和完美转发"><a href="#右值引用，左值引用和完美转发" class="headerlink" title="右值引用，左值引用和完美转发"></a>右值引用，左值引用和完美转发</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/6ec6f4722adeeb84eb83e50050eb059.png"></p>
 <h3 id="lamada表达式"><a href="#lamada表达式" class="headerlink" title="lamada表达式"></a>lamada表达式</h3><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/6bfbf439d29ec8b406d6faa9bedea11.png"><br>lambda 的“捕获”功能需要在“[]”里做文章，由于实际的规则太多太细，记忆、理解的成本高，所以我只说几个要点，帮你快速掌握它们：<br>“[&#x3D;]”表示按值捕获所有外部变量，表达式内部是值的拷贝，并且不能修改；<br>“[&amp;]”是按引用捕获所有外部变量，内部以引用的方式使用，可以修改；<br>你也可以在“[]”里明确写出外部变量名，指定按值或者按引用捕获，C++在这里给予了非常大的灵活性。<br>int x &#x3D; 33;               &#x2F;&#x2F; 一个外部变量<br>auto f1 &#x3D; <a href="">&#x3D;</a>           &#x2F;&#x2F; lambda表达式，用“&#x3D;”按值捕获<br>{<br>    &#x2F;&#x2F;x +&#x3D; 10;            &#x2F;&#x2F; x只读，不允许修改<br>};<br>auto f2 &#x3D; <a href="">&amp;</a>         &#x2F;&#x2F; lambda表达式，用“&amp;”按引用捕获<br>{<br>    x +&#x3D; 10;            &#x2F;&#x2F; x是引用，可以修改<br>};<br>auto f3 &#x3D; <a href="">&#x3D;, &amp;x</a>       &#x2F;&#x2F; lambda表达式，用“&amp;”按引用捕获x，其他的按值捕获<br>{<br>    x +&#x3D; 20;              &#x2F;&#x2F; x是引用，可以修改<br>};<br>“捕获”也是使用 lambda 表达式的一个难点，关键是要理解“外部变量”的含义。</p>
 <h1 id="多态的实现原理"><a href="#多态的实现原理" class="headerlink" title="多态的实现原理"></a>多态的实现原理</h1><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/b79dae7681a03b0e87d621f936d5dba.png"></p>
@@ -301,6 +301,7 @@
 <h2 id="动态内存分配三大核心函数"><a href="#动态内存分配三大核心函数" class="headerlink" title="动态内存分配三大核心函数"></a>动态内存分配三大核心函数</h2><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/dd47f364e0d3e9f17b4bd6a22ccadf1.png"></p>
 <h2 id="哪些资源必须显式初始化"><a href="#哪些资源必须显式初始化" class="headerlink" title="哪些资源必须显式初始化"></a>哪些资源必须显式初始化</h2><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/8d88d930c51c7f1eff0dd3f7987e40a.png"></p>
 <h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/d1b7702162032ffd3b5c4c933cb446c.png"></p>
+<h2 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h2><p><img src="/2025/06/04/Cpp%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/2fe928b2b3ee844cbc4f732cf1f4b5e.png"></p>
 
       
     </div>
@@ -363,7 +364,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -439,7 +440,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -520,7 +521,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -605,7 +606,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
@@ -820,7 +821,7 @@ while (~scanf(&quot;%d%d&quot;, &amp;a, &amp;b)) &#123;
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-07-31 11:29:02" itemprop="dateModified" datetime="2025-07-31T11:29:02+00:00">2025-07-31</time>
+      <time title="Modified: 2025-08-02 16:35:20" itemprop="dateModified" datetime="2025-08-02T16:35:20+00:00">2025-08-02</time>
     </span>
 
   
